@@ -26,6 +26,7 @@
         <script type="text/javascript" src="https://etherpad-lite.identitylabs.org/js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript">
             function navigateTo(dest,params) {
+
                 var supported_views = gadgets.views.getSupportedViews();
                 gadgets.views.requestNavigateTo(supported_views[dest],params);
             }
