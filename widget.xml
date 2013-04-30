@@ -1,0 +1,133 @@
+<Module>
+    <ModulePrefs 
+        title="Wordpress Widget" 
+        title_url="Wordpress Widget" 
+        directory_title="Dir" 
+        description="Wordpress Widget Application" 
+        screenshot="http://ryanpricemedia.com/images/etherpad.png" 
+        thumbnail="http://ryanpricemedia.com/images/etherpad.png" 
+        category="tools" 
+        category2="productivity" 
+        author="Cloud Identity Limited - http://www.cloudidentity.co.uk" 
+        author_email="info@cloudidentity.co.uk">
+
+        <Require feature="setprefs"/>
+        <Require feature="dynamic-height"/>
+        <Require feature="opensocial-2.5"/>
+        <Require feature="osapi"/>
+        <Require feature="views"/>
+        
+    </ModulePrefs>
+
+    <!-- Default view -->
+    <Content view="default" type="html">
+    <![CDATA[
+        <link rel="stylesheet" href="https://etherpad-lite.identitylabs.org/css/style.css" type="text/css" />
+        <script type="text/javascript" src="https://etherpad-lite.identitylabs.org/js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript">
+            function navigateTo(dest,params) {
+                var supported_views = gadgets.views.getSupportedViews();
+                gadgets.views.requestNavigateTo(supported_views[dest],params);
+            }
+            function gotoCanvas(params) {
+                navigateTo("canvas", params);
+            }
+            console.log("Loading home view...");
+            gadgets.util.registerOnLoadHandler(function() {
+                var personRequest = osapi.people.get();
+                personRequest.execute(function(peopleResponse) {
+                    var personDisplayName = peopleResponse.displayName;
+                    console.log("Person display name: " + personDisplayName);
+                    var groupRequest = osapi.groups.get();
+                    groupRequest.execute(function(groupResponse) {
+                        var groupList = groupResponse.list;
+                        var etherpadLinksDiv = $('ul.etherpad_links');
+                        var etherpadMaxLinksDiv = $('ul.etherpad_max_links');
+                        $.each(groupList, function(i)
+                        {
+                            console.log("Processing group: " + groupList[i].id);
+                            var li = $('<li/>').appendTo(etherpadLinksDiv);
+                            var groupId = groupList[i].id;
+                            var padId = groupId.substr(groupId.lastIndexOf(":")+1);
+                            console.log("Pad ID: " + padId);
+                            var a = $('<a/>').prop('href', 'http://beta.etherpad.org/p/' + padId);
+                            a.text(padId);
+                            a.attr('target','_blank');
+                            a.appendTo(li);
+
+                            var li2 = $('<li/>').appendTo(etherpadMaxLinksDiv);
+                            var params = { 'groupId' : padId };
+                            var a2 = $('<a/>');
+                            a2.on('click', function(event){
+                                gotoCanvas(params);
+                            });                            
+                            a2.attr('href','#');
+                            a2.text(padId);
+                            a2.appendTo(li2);
+                        });
+                    });
+                });
+            });
+        </script>
+
+        <img src="https://etherpad-lite.identitylabs.org/images/etherpad.gif" width="100%"/>
+        <div id="infobar">
+            View the Etherpad for your group:  <br />
+            <ul class="etherpad_max_links">
+            </ul>
+            Access full-browser Etherpad for your group:  <br />
+            <ul class="etherpad_links">
+            </ul>
+        </div>
+
+    ]]>
+    </Content>
+
+    <!-- View when maximized -->
+    <Content view="canvas">
+    <![CDATA[
+        
+        <link rel="stylesheet" href="https://etherpad-lite.identitylabs.org/css/style.css" type="text/css" />
+        <script type="text/javascript" src="https://etherpad-lite.identitylabs.org/js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="https://etherpad-lite.identitylabs.org/js/etherpad.js"></script>
+        <script type="text/javascript">
+            console.log("Loading...");
+            gadgets.util.registerOnLoadHandler(function() {
+                var personRequest = osapi.people.get();
+                personRequest.execute(function(peopleResponse) {
+                    var personDisplayName = peopleResponse.displayName;
+                    console.log("Person display name: " + personDisplayName);
+                    var groupRequest = osapi.groups.get();
+                    groupRequest.execute(function(groupResponse) {
+                        var firstGroupId = groupResponse.list[0].id;
+                        console.log("Retrieved first group: " + firstGroupId);
+                        var padId = firstGroupId.substr(firstGroupId.lastIndexOf(":")+1);
+                        console.log("First pad ID: " + padId);
+                        var prefs = gadgets.views.getParams();
+                        if (prefs) {
+                            padId = prefs['groupId'];
+                            console.log('GroupID: ' + padId);
+                        } else {
+                            console.log('GroupID information not present in the request.');
+                        }
+                        $('#etherpad_link').attr('href','http://beta.etherpad.org/p/' + padId);
+                        $('#etherpad-container').pad({
+                            'padId': padId,
+                            'useMonospacedFont': true,
+                            'showLineNumbers': true,
+                            'showChat': true,
+                            'showControls': true,
+                            'userName': personDisplayName
+                        });
+                    });
+                });
+            });
+        </script>
+
+        <div id="infobar">
+            <div id="etherpad-container"></div>
+        </div>
+
+    ]]>
+    </Content>
+</Module>
