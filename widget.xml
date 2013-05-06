@@ -16,7 +16,8 @@
         <Require feature="opensocial-2.5"/>
         <Require feature="osapi"/>
         <Require feature="views"/>
-        
+        <Require feature="resources"/> 
+       
     </ModulePrefs>
 
     <!-- Default view -->
@@ -34,6 +35,13 @@
                 navigateTo("canvas", params);
             }
             console.log("Loading home view...");
+            gadgets.resources.getResources({'groupId' : 'MMACHULAK_TEAM'}).execute(function (result) {
+            if (result.error) {
+                alert('Error, unable to send outcome to server.');
+            } else {
+                alert(result);
+            }
+            }) ;
             gadgets.util.registerOnLoadHandler(function() {
                 var personRequest = osapi.people.get();
                 personRequest.execute(function(peopleResponse) {
