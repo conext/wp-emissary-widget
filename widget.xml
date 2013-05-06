@@ -1,9 +1,9 @@
 <Module>
     <ModulePrefs 
-        title="Wordpress Widget" 
-        title_url="Wordpress Widget" 
+        title="Wordpress Emissary Widget" 
+        title_url="https://github.com/conext/wp-emissary-widget" 
         directory_title="Dir" 
-        description="Wordpress Widget Application" 
+        description="A widget that allows to interact with Conext's Wordpress." 
         screenshot="http://i.imgur.com/fFAwyq0.png" 
         thumbnail="http://i.imgur.com/fFAwyq0.png" 
         category="tools" 
