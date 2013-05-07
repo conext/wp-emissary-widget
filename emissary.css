@@ -1,0 +1,11 @@
+body {
+    font-size: 12px;
+}
+
+span.good {
+    color: #78AB46;
+}
+
+span.bad {
+    color: #CD3333;
+}

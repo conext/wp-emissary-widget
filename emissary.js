@@ -33,7 +33,16 @@ function handle_resource_response(response) {
 }
 
 function get_user_groups() {
-    osapi.groups.get().execute(function(e) {con
+    osapi.groups.get().execute(function(d) {
+        clog("in get_user_groups():");
+        console.log(d); 
+        $('#group_select').empty();
+        d.list.forEach(function(e) {
+            $('#group_select').append($('<option></option>')
+                .attr('value', e.id)
+                .text(e.title + " (" + e.description + ")"));  
+        });
+    });
 }
 
 /* Fire a request for resources and pass the response to rendering function. */

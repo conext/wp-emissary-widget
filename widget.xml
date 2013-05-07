@@ -24,7 +24,10 @@
     <Content view="default" type="html">
     <![CDATA[
 
-    <script type="text/javascript" src="/emissary.js"></script>
+    <!-- "<link> tags should only appear in <head> .. ;)" -->
+    <link rel="stylesheet" href="https://wordpress-widget.identitylabs.org/emissary.css"></link>
+
+    <script type="text/javascript" src="https://wordpress-widget.identitylabs.org/emissary.js"></script>
     <script type="text/javascritp" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
     <div id="group_select_bar">
@@ -47,7 +50,7 @@
         <div id="c_create">
             <label for="site_name">Desired site name:</label>
             <input type="text" id="site_name"/> 
-            <p>Good: team1, dream-team. Bad: !%@^$^!$@#x.</p>
+            <p>Good: <span class="good">team1, dream-team</span>. Bad: <span class="bad">!%@^$^!$@#x</span>.</p>
         </div>
 
         <div id="c_go_to_wp">
