@@ -9,3 +9,15 @@ span.good {
 span.bad {
     color: #CD3333;
 }
+
+#c_feeds {
+    display: none;
+}
+
+#c_create {
+    display: none;
+}
+
+#c_go_to_wp {
+    display: none;
+}

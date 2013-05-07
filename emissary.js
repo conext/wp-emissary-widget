@@ -86,4 +86,5 @@ function render_create() {
 
 function emissary_init() {
     clog("What's the word on the street?");
+    get_user_groups();
 }
