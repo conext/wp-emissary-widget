@@ -29,7 +29,8 @@ function get_feed_for(uri) {
 
 function handle_resource_response(response) {
     clog("This is what I got:");
-    console.log(response);
+    var res = $.parseJSON(response.resource);
+    console.log(res);
 }
 
 function get_user_groups() {
@@ -81,4 +82,8 @@ function render_loading(message) {
 /* Render the create-a-new-site div. */
 function render_create() {
     clog("in render_create()");
+}
+
+function emissary_init() {
+    clog("What's the word on the street?");
 }
