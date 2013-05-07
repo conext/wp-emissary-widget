@@ -25,8 +25,35 @@
     <![CDATA[
 
     <script type="text/javascript" src="/emissary.js"></script>
+    <script type="text/javascritp" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-    I bring news.
+    <div id="group_select_bar">
+        <label for="group_select">Group to view:</label>
+        <select id="group_select">
+            <option value="1000" selected>1000</option>
+            <option value="2000">2000</option>
+        </select>
+    </div>
+
+    <div id="communique">
+        <div id="c_loading">
+            Loading...
+        </div>
+        
+        <div id="c_feeds">
+            Feeds...
+        </div>
+
+        <div id="c_create">
+            <label for="site_name">Desired site name:</label>
+            <input type="text" id="site_name"/> 
+            <p>Good: team1, dream-team. Bad: !%@^$^!$@#x.</p>
+        </div>
+
+        <div id="c_go_to_wp">
+            <p>See your new site at <a href="#" id="new_blog_link">example.com</a></p>
+        </div>
+    </div>
 
     ]]>
     </Content>
@@ -34,7 +61,7 @@
     <!-- View when maximized -->
     <Content view="canvas">
     <![CDATA[
-    
+        Not yet.    
 
     ]]>
     </Content>
