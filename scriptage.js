@@ -133,6 +133,23 @@ function render_create() {
 
 function emissary_init() {
     clog("What's the word on the street?");
+    gadgets.window.adjustHeight(250);
+    $('#site_name').bind('keyup change', function() {
+        console.log("Change!");
+        var p = /^[a-z][a-z1-9]*(-[a-z1-9]+)*$/;
+        var v = $('#site_name').val();
+        if (v !== '') {
+            if (p.test(v)) {
+                $('#site_name').attr('class', 'ok');
+                $('#create_btn').prop('disabled', false);
+            } else {
+                $('#site_name').attr('class', 'not_ok');
+                $('#create_btn').prop('disabled', true);
+            }
+        } else {
+            $('#site_name').attr('class', '');
+        }
+    });
     $('#group_select').change(function() {
         render_loading();
         get_wp_resources();        

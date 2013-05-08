@@ -16,6 +16,7 @@ span.bad {
 
 #c_create {
     display: none;
+    text-align: center;
 }
 
 #c_go_to_wp {
@@ -45,4 +46,38 @@ span.bad {
 .site_post_link {
     color: #539DC2;
     text-decoration: none;
+}
+
+#no_site_yet {
+    text-align: center;
+    font-size: 18px;
+}
+
+#site_name {
+    font-size: 20px;
+    padding: 5px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    vertical-align: middle; 
+}
+
+#site_name:focus {
+    outline: none;
+}
+
+#create_note {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#create_btn {
+    vertical-align: middle;
+    font-size: 90px;
+}
+
+.ok {
+}
+
+.not_ok {
+    border-color: #CD3333 !important;
 }
