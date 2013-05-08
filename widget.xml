@@ -42,21 +42,21 @@
     </div>
 
     <div id="communique">
-        <div id="c_loading">
+        <div id="c_loading" class="renderable">
             Loading...
         </div>
         
-        <div id="c_feeds">
+        <div id="c_feeds" class="renderable">
             Feeds...
         </div>
 
-        <div id="c_create">
+        <div id="c_create" class="renderable">
             <label for="site_name">Desired site name:</label>
             <input type="text" id="site_name"/> 
             <p>Good: <span class="good">team1, dream-team</span>. Bad: <span class="bad">!%@^$^!$@#x</span>.</p>
         </div>
 
-        <div id="c_go_to_wp">
+        <div id="c_go_to_wp" class="renderable">
             <p>See your new site at <a href="#" id="new_blog_link">example.com</a></p>
         </div>
     </div>

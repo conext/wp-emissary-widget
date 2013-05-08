@@ -31,6 +31,11 @@ function handle_resource_response(response) {
     clog("This is what I got:");
     var res = $.parseJSON(response.resource);
     console.log(res);
+    if (res.length > 0) {
+        render_feeds(); 
+    } else {
+        render_create();
+    }
 }
 
 function get_user_groups() {
@@ -69,6 +74,8 @@ function get_wp_resources(group_id) {
 function render_feeds(feed) {
     clog("in render_feeds():");
     console.log(feed);
+    $('.renderable').css('display', 'none');
+    $('#c_feeds').css('display', 'block');
 }
 
 /* Render div with a link to newly created site. */
@@ -84,6 +91,8 @@ function render_loading(message) {
 /* Render the create-a-new-site div. */
 function render_create() {
     clog("in render_create()");
+    $('.renderable').css('display', 'none');
+    $('#c_create').css('display', 'block'); 
 }
 
 function emissary_init() {
