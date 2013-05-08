@@ -29,6 +29,7 @@
 
     <script type="text/javascript" src="https://wordpress-widget.identitylabs.org/scriptage.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="https://raw.github.com/placemarker/jQuery-MD5/master/jquery.md5.js"></script>
     <script type="text/javascript">
         gadgets.util.registerOnLoadHandler(emissary_init);
     </script>
