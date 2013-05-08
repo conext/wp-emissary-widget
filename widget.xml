@@ -25,7 +25,7 @@
     <![CDATA[
 
     <!-- "<link> tags should only appear in <head> .. ;)" -->
-    <link rel="stylesheet" href="https://wordpress-widget.identitylabs.org/emissary.css"></link>
+    <link rel="stylesheet" href="https://wordpress-widget.identitylabs.org/flair.css"></link>
 
     <script type="text/javascript" src="https://wordpress-widget.identitylabs.org/scriptage.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
