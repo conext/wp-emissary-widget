@@ -43,6 +43,8 @@ function get_user_groups() {
                 .attr('value', e.id)
                 .text(e.title + " (" + e.description + ")"));  
         });
+        /* jmp */
+        get_wp_resources();
     });
 }
 
