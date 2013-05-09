@@ -154,10 +154,6 @@ function emissary_init() {
             $('#site_name').attr('class', '');
         }
     });
-    $('#group_select').change(function() {
-        render_loading();
-        get_wp_resources();        
-    });
 
     window.addEventListener("message", function(ev) {
         console.log(ev);
@@ -170,8 +166,6 @@ function emissary_init() {
         }
     });      
 
-
     top.postMessage("let's go!", "http://portaldev.cloud.jiscadvance.biz");
-    //get_user_groups();
 }
 
