@@ -65,6 +65,10 @@ function get_user_groups() {
     });
 }
 
+function register_resource() {
+    clog("in register_resource().");
+}
+
 /* Fire a request for resources and pass the response to rendering function. */
 function get_wp_resources(group_id) {
     if (osapi.resources === undefined) {
@@ -167,5 +171,9 @@ function emissary_init() {
     });      
 
     top.postMessage("let's go!", "http://portaldev.cloud.jiscadvance.biz");
+
+    $('#create_btn').click(function() {
+        clog("Will create: " + $('#site_name').val());
+    });
 }
 
