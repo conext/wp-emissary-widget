@@ -22,10 +22,6 @@ function get_current_group() {
     return current_group; /* todo: cleanup */
 }
 
-function get_group() {
-    
-}
-
 function get_feed_for(uri) {
     clog("in get_feed_for(uri), uri = " + uri);
     /* 'seed' is a way of getting around Google's cache */
