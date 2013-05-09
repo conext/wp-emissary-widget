@@ -1,3 +1,5 @@
+var current_group; /* for now. */
+
 /* This neat thing stolen from http://stackoverflow.com/a/6271906/320475 */
 function parse_rss(url, callback) {
   $.ajax({
@@ -17,10 +19,11 @@ function clog(message) {
 
 /* Pull from dropdown, atm. */
 function get_current_group() {
-    /* temporary, current group ID should be moved into container */
-    var e = document.getElementById("group_select");
-    var v = e.options[e.selectedIndex].value;   
-    return v;
+    return current_group; /* todo: cleanup */
+}
+
+function get_group() {
+    
 }
 
 function get_feed_for(uri) {
@@ -32,6 +35,7 @@ function get_feed_for(uri) {
 
 function handle_resource_response(response) {
     clog("This is what I got:");
+    console.log(response);
     var res = $.parseJSON(response.resource);
     console.log(res);
     if (res.length > 0) {
@@ -154,5 +158,20 @@ function emissary_init() {
         render_loading();
         get_wp_resources();        
     });
-    get_user_groups();
+
+    window.addEventListener("message", function(ev) {
+        console.log(ev);
+        if (ev.data != current_group) {
+            current_group = ev.data;
+            render_loading();
+            get_wp_resources();
+        } else {
+            clog("no changes required, same group.");
+        }
+    });      
+
+
+    top.postMessage("let's go!", "http://portaldev.cloud.jiscadvance.biz");
+    //get_user_groups();
 }
+
