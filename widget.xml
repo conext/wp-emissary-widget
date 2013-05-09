@@ -45,11 +45,13 @@
 
         <div id="c_create" class="renderable">
             <p id="no_site_yet">This group doesn't have a WordPress site yet.</p>
-            <label for="site_name">Enter your site id:<br></label>
-            <input type="text" id="site_name" size=30 placeholder="group-name"/> 
-            <input type="submit" id="create_btn" value="Go &rsaquo;">
-            <p id="create_note">You will be able to set a title and description later. This is the identifier of the blog, so it must conform to some rules (stick to alphanumerics and hyphens for a painless experience):
-            <p>Good: <span class="good">team1, dream-team</span>. Bad: <span class="bad">!%@^$^!$@#x</span>.</p>
+            <form action="#" id="create_form">
+                <label for="site_name">Enter your site id:<br></label>
+                <input type="text" id="site_name" size=30 placeholder="group-name"/> 
+                <input type="submit" id="create_btn" value="Go &rsaquo;">
+                <p id="create_note">You will be able to set a title and description later. This is the identifier of the blog, so it must conform to some rules (stick to alphanumerics and hyphens for a painless experience):
+                <p>Good: <span class="good">team1, dream-team</span>. Bad: <span class="bad">!%@^$^!$@#x</span>.</p>
+               </form>
         </div>
 
         <div id="c_go_to_wp" class="renderable">

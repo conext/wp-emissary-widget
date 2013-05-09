@@ -172,7 +172,8 @@ function emissary_init() {
 
     top.postMessage("let's go!", "http://portaldev.cloud.jiscadvance.biz");
 
-    $('#create_btn').click(function() {
+    $('#create_form').submit(function(e) {
+        e.preventDefault();
         clog("Will create: " + $('#site_name').val());
     });
 }
