@@ -7,7 +7,11 @@ function parse_rss(url, callback) {
     dataType: 'json',
     success: function(data) {
         console.log(data);
-      callback(data.responseData.feed);
+        if (data.responseData) {
+            callback(data.responseData.feed);
+        } else {
+            clog("Not rendering feed for " + url + " -- there's nothing there.");
+        }
     },
   });
 }
@@ -119,6 +123,10 @@ function render_feeds(feed) {
 /* Render div with a link to newly created site. */
 function render_goto_wp(site_name) {
     clog("in render_goto_wp()");
+    $('.renderable').css('display', 'none');
+    $('#c_go_to_wp').css('display', 'block');
+    var uri = 'https://' + site_name + '.wordpress.identitylabs.org/?force_resource_sync=perhaps';
+    $('#new_blog_link').attr('href', uri).text(uri);
 }
 
 /* Render the "loading" div, with optional message. */
@@ -170,7 +178,26 @@ function emissary_init() {
 
     $('#create_form').submit(function(e) {
         e.preventDefault();
-        clog("Will create: " + $('#site_name').val());
+        var local_name = $('#site_name').val();
+        clog("Will create: " + local_name);
+        osapi.resources.createResource({
+            "groupId": get_current_group(), 
+            "obj" : {
+                "local_name": local_name,
+                "uri": "https://" + local_name + ".wordpress.identitylabs.org"
+            }
+        }).execute(function(res) { 
+            clog("response I got: ");
+            console.log(res);
+            var res = $.parseJSON(res.resource);
+            console.log(res);
+            if (res.outcome == "ok") {
+                render_goto_wp(local_name);
+            } else {
+                clog("Not OK.");
+                render_goto_wp(local_name);
+            }
+        });
     });
 }
 
