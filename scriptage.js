@@ -127,7 +127,7 @@ function render_goto_wp(site_name) {
     $('.renderable').css('display', 'none');
     $('#c_go_to_wp').css('display', 'block');
     var uri = 'https://wordpress.identitylabs.org/?conext_redirect=' + site_name;
-    $('#new_blog_link').attr('href', uri).text(uri);
+    $('#new_blog_link').attr('href', uri).text('right over here');
     /* Make link disappear after it's clicked. */
     $('#new_blog_link').click(function() {
         clog("Link clicked, waiting 5 seconds and rendering feed view.");

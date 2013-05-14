@@ -55,7 +55,7 @@
         </div>
 
         <div id="c_go_to_wp" class="renderable">
-            <p>See your new site at <a href="#" id="new_blog_link" target="_blank">example.com</a></p>
+            <p>See your new site <a href="#" id="new_blog_link" target="_blank">example.com</a>.</p>
         </div>
     </div>
 
