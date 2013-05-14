@@ -131,7 +131,7 @@ function render_goto_wp(site_name) {
     $('#new_blog_link').click(function() {
         clog("Link clicked, waiting 5 seconds and rendering feed view.");
         /* Need to re-init, unfortunately. */
-        setTimeout(emissary_init, 5000);
+        setTimeout(get_wp_resources(get_current_group()), 5000);
     });
 }
 
