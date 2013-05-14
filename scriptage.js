@@ -11,6 +11,7 @@ function parse_rss(url, callback) {
             callback(data.responseData.feed);
         } else {
             clog("Not rendering feed for " + url + " -- there's nothing there.");
+            render_loading('This feed is empty.');
         }
     },
   });
@@ -139,6 +140,7 @@ function render_goto_wp(site_name) {
 function render_loading(message) {
     clog("in render_loading()");
     $('.renderable').css('display', 'none');
+    $('#c_loading').text(message);
     $('#c_loading').css('display', 'block');
 }
 
@@ -177,7 +179,7 @@ function emissary_init() {
             $('#site_name').val('');
     
             current_group = ev.data;
-            render_loading();
+            render_loading("Loading...");
             get_wp_resources();
         } else {
             clog("no changes required, same group.");
