@@ -125,7 +125,7 @@ function render_goto_wp(site_name) {
     clog("in render_goto_wp()");
     $('.renderable').css('display', 'none');
     $('#c_go_to_wp').css('display', 'block');
-    var uri = 'https://' + site_name + '.wordpress.identitylabs.org/?force_resource_sync=perhaps';
+    var uri = 'https://wordpress.identitylabs.org/?conext_redirect=' + site_name;
     $('#new_blog_link').attr('href', uri).text(uri);
 }
 
