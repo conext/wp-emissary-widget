@@ -127,6 +127,12 @@ function render_goto_wp(site_name) {
     $('#c_go_to_wp').css('display', 'block');
     var uri = 'https://wordpress.identitylabs.org/?conext_redirect=' + site_name;
     $('#new_blog_link').attr('href', uri).text(uri);
+    /* Make link disappear after it's clicked. */
+    $('#new_blog_link').click(function() {
+        clog("Link clicked, waiting 5 seconds and rendering feed view.");
+        /* Need to re-init, unfortunately. */
+        setTimeout(emissary_init, 5000);
+    });
 }
 
 /* Render the "loading" div, with optional message. */
@@ -145,6 +151,10 @@ function render_create() {
 
 function emissary_init() {
     clog("What's the word on the street?");
+
+    /* Clean up input field if something left over (happened). */
+    $('#site_name').val('');
+
     gadgets.window.adjustHeight(250);
     $('#site_name').bind('keyup change', function() {
         console.log("Change!");
