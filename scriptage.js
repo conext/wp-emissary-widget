@@ -152,9 +152,6 @@ function render_create() {
 function emissary_init() {
     clog("What's the word on the street?");
 
-    /* Clean up input field if something left over (happened). */
-    $('#site_name').val('');
-
     gadgets.window.adjustHeight(250);
     $('#site_name').bind('keyup change', function() {
         console.log("Change!");
@@ -176,6 +173,9 @@ function emissary_init() {
     window.addEventListener("message", function(ev) {
         console.log(ev);
         if (ev.data != current_group) {
+            /* Clean up input field if something left over (happened). */
+            $('#site_name').val('');
+    
             current_group = ev.data;
             render_loading();
             get_wp_resources();
