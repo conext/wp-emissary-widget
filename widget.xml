@@ -46,6 +46,16 @@
             Feeds...
         </div>
 
+        <div id="c_messagebox">
+            <p id="mbox_title">
+            title
+            </p>
+            <p id="mbox_description">
+            description
+            </p>
+        </div>
+            
+
         <div id="c_create" class="renderable">
             <p id="no_site_yet">This group doesn't have a WordPress site yet.</p>
             <form action="#" id="create_form">

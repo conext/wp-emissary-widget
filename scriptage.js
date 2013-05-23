@@ -88,6 +88,14 @@ function get_wp_resources(group_id) {
  * 
  */
 
+function messagebox(messsage, description) {
+    $('#communique').children().hide();
+    $('#wpbar').show();
+    $('#c_messagebox').show();
+    $('#mbox_title').html(messsage);
+    $('#mbox_description').html(description);
+}
+
 /* Render feeds in their div, hide other divs. */
 function render_feeds(feed) {
     clog("in render_feeds():");
@@ -155,6 +163,7 @@ function emissary_init() {
     clog("What's the word on the street?");
 
     gadgets.window.adjustHeight(250);
+    $('#c_messagebox').hide();
     $('#site_name').bind('keyup change', function() {
         console.log("Change!");
         var p = /^[a-z][a-z1-9]*(-[a-z1-9]+)*$/;
@@ -174,7 +183,9 @@ function emissary_init() {
 
     window.addEventListener("message", function(ev) {
         console.log(ev);
-        if (ev.data != current_group) {
+        if (!ev.data) { 
+            messagebox("Weird.", "I couldn't get your group.");
+        } else if (ev.data != current_group) {
             /* Clean up input field if something left over (happened). */
             $('#site_name').val('');
     
