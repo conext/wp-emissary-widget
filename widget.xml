@@ -35,6 +35,9 @@
     </script>
 
     <div id="communique">
+        <div id="wpbar">
+        &nbsp;
+        </div>
         <div id="c_loading" class="renderable">
             Loading...
         </div>
