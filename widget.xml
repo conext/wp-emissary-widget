@@ -34,6 +34,10 @@
         gadgets.util.registerOnLoadHandler(emissary_init);
     </script>
 
+    <div id="splash">
+        &nbsp;
+    </div>
+
     <div id="communique">
         <div id="wpbar">
         &nbsp;

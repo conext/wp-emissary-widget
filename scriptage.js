@@ -89,6 +89,7 @@ function get_wp_resources(group_id) {
  */
 
 function messagebox(messsage, description) {
+    decommission_splash();
     $('#communique').children().hide();
     $('#wpbar').show();
     $('#c_messagebox').show();
@@ -100,6 +101,7 @@ function messagebox(messsage, description) {
 function render_feeds(feed) {
     clog("in render_feeds():");
     console.log(feed);
+    decommission_splash();
     $('.renderable').css('display', 'none');
     $('#c_feeds').css('display', 'block');
     $('#c_feeds').append($('<div></div>')
@@ -159,10 +161,19 @@ function render_create() {
     $('#c_create').css('display', 'block'); 
 }
 
+function decommission_splash() {
+    $('#splash').hide();
+    $('#communique').show();
+}
+
 function emissary_init() {
     clog("What's the word on the street?");
 
-    gadgets.window.adjustHeight(250);
+    gadgets.window.adjustHeight(295);
+
+    $('#comunique').hide();
+    $('#splash').show();
+
     $('#c_messagebox').hide();
     $('#site_name').bind('keyup change', function() {
         console.log("Change!");
@@ -190,7 +201,7 @@ function emissary_init() {
             $('#site_name').val('');
     
             current_group = ev.data;
-            render_loading("Loading...");
+            //render_loading("Loading...");
             get_wp_resources();
         } else {
             clog("no changes required, same group.");
