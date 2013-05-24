@@ -180,6 +180,7 @@ function render_loading(message) {
 /* Render the create-a-new-site div. */
 function render_create() {
     clog("in render_create()");
+    decommission_splash();
     $('.renderable').css('display', 'none');
     $('#c_create').css('display', 'block'); 
 }
