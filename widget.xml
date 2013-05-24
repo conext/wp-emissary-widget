@@ -42,10 +42,7 @@
         <div id="wpbar">
         &nbsp;
         </div>
-        <div id="c_loading" class="renderable">
-            Loading...
-        </div>
-        
+
         <div id="c_feeds" class="renderable">
             Feeds...
         </div>
