@@ -11,7 +11,7 @@ function parse_rss(url, callback) {
             callback(data.responseData.feed);
         } else {
             clog("Not rendering feed for " + url + " -- there's nothing there.");
-            render_loading('This feed is empty.');
+            messagebox("Feed was empty.", "So, like, you know.");
         }
     },
   });
@@ -30,8 +30,22 @@ function get_current_group() {
 function get_feed_for(uri) {
     clog("in get_feed_for(uri), uri = " + uri);
     /* 'seed' is a way of getting around Google's cache */
-    uri = uri + "?feed=rss2&seed=" + (new Date()).getTime();
-    parse_rss(uri, render_feeds);
+    uri = uri + "?feed=json";
+    clog("=> " + uri);
+    //parse_rss(uri, render_feeds);
+    $.ajax({
+        url: uri,
+        dataType: 'json',
+        success: function(data) {
+            clog("Got JSON WP feed:");
+            console.log(data);
+            render_feeds(data);
+        },
+        error: function(data) {
+            clog("ajax call failed:");
+            console.log(data);
+        }
+    });
 }
 
 function handle_resource_response(response) {
@@ -104,31 +118,40 @@ function render_feeds(feed) {
     decommission_splash();
     $('.renderable').css('display', 'none');
     $('#c_feeds').css('display', 'block');
+    clog("md5 for " + feed.bloginfo.site_url + " will be " + $.md5(feed.bloginfo.site_url));
     $('#c_feeds').append($('<div></div>')
-        .attr('id', $.md5(feed.link))
+        .attr('id', $.md5(feed.bloginfo.site_url))
         .attr('class', 'feed')
         .append($('<a></a>')
-            .attr('href', feed.link)
+            .attr('href', feed.bloginfo.site_url)
             .attr('class', 'feed_site')
             .attr('target', '_blank')
-            .text(feed.title)));
+            .text((feed.bloginfo.title ? feed.bloginfo.title : "(blog with no title)"))));
 
-    feed.entries.forEach(function(e) {
-        $('#' + $.md5(feed.link)).append(
-            $('<p></p>')
-            .attr('class', 'site_post')
-            .append(
-                $('<a></a>')
-                .attr('href', e.link)
-                .attr('class', 'site_post_link')
-                .attr('target', '_blank')
-                .html(e.title + " &raquo; "))
-            .append(
-                $('<span></span>')
-                .attr('class', 'site_post_digest')
-                .text(e.contentSnippet))
-        );
-    });
+    if (feed.posts.length == 0) {
+        /* Empty feed. */
+        $('#' + $.md5(feed.bloginfo.site_url)).append($("<p>No posts.</p>"));
+    } else {
+        /* Render each post.. or maybe top 3? */
+        feed.posts.forEach(function(e) {
+            clog("++");
+            console.log(e);
+            $('#' + $.md5(feed.bloginfo.site_url)).append(
+                $('<p></p>')
+                .attr('class', 'site_post')
+                .append(
+                    $('<a></a>')
+                    .attr('href', e.permalink)
+                    .attr('class', 'site_post_link')
+                    .attr('target', '_blank')
+                    .html(e.title + " &raquo; "))
+                .append(
+                    $('<span></span>')
+                    .attr('class', 'site_post_digest')
+                    .text(e.excerpt))
+            );
+        });
+    }
 }
 
 /* Render div with a link to newly created site. */
@@ -162,6 +185,7 @@ function render_create() {
 }
 
 function decommission_splash() {
+    clog("Decommissioning splash..");
     $('#splash').hide();
     $('#communique').show();
 }

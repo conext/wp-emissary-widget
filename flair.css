@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400&subset=latin,latin-ext,cyrillic-ext);
+
 body {
     font-size: 12px;
 }
@@ -103,4 +105,22 @@ span.bad {
     background-size: 210 210;
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+div#c_messagebox {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 16px;
+}
+
+p#mbox_title {
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 0;
+}
+
+p#mbox_description {
+    margin-top: 0;
+    font-family: 'Open Sans', sanf-serif;
+    font-style: italic;
+    font-weight: 300;
 }
