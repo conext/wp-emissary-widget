@@ -169,14 +169,6 @@ function render_goto_wp(site_name) {
     });
 }
 
-/* Render the "loading" div, with optional message. */
-function render_loading(message) {
-    clog("in render_loading()");
-    $('.renderable').css('display', 'none');
-    $('#c_loading').text(message);
-    $('#c_loading').css('display', 'block');
-}
-
 /* Render the create-a-new-site div. */
 function render_create() {
     clog("in render_create()");
@@ -226,7 +218,6 @@ function emissary_init() {
             $('#site_name').val('');
     
             current_group = ev.data;
-            //render_loading("Loading...");
             get_wp_resources();
         } else {
             clog("no changes required, same group.");
