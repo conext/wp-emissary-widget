@@ -195,7 +195,7 @@ function emissary_init() {
     $('#site_name').bind('keyup change', function() {
         console.log("Change!");
         var p = /^[a-z][a-z1-9]*(-[a-z1-9]+)*$/;
-        var v = $('#site_name').val();
+        var v = $('#site_name').val().toLowerCase();
         if (v !== '') {
             if (p.test(v)) {
                 $('#site_name').attr('class', 'ok');
