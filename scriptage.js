@@ -224,7 +224,7 @@ function emissary_init() {
         }
     });      
 
-    top.postMessage("let's go!", "http://portaldev.cloud.jiscadvance.biz");
+    top.postMessage("let's go!", top.location.origin);
 
     $('#create_form').submit(function(e) {
         e.preventDefault();
