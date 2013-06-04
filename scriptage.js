@@ -245,7 +245,7 @@ function emissary_init() {
                 render_goto_wp(local_name);
             } else {
                 clog("Not OK.");
-                render_goto_wp(local_name);
+                messagebox("Something's broken.", "I couldn't create the resource. Try.. try again?");
             }
         });
     });
