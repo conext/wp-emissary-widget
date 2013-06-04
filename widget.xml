@@ -64,7 +64,7 @@
             <p id="no_site_yet">This group doesn't have a WordPress site yet.</p>
             <form action="#" id="create_form" class="form-inline">
                 <label for="site_name">Enter your site id:<br></label>
-                <input type="text" id="site_name" class="input-large" placeholder="group-name"/>
+                <input type="text" id="site_name" class="input-large" placeholder="Name of your blog"/>
                 <input class="btn" type="submit" id="create_btn" value="Create Blog &rsaquo;">
                 <p id="create_note">You will be able to set a title and description later. This is the identifier of the blog, so it must conform to some rules (stick to alphanumerics and hyphens for a painless experience):
                 <p>Good: <span class="good">team1, dream-team</span>. Bad: <span class="bad">!%@^$^!$@#x</span>.</p>
