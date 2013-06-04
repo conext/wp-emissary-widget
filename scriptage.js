@@ -165,7 +165,11 @@ function render_goto_wp(site_name) {
     $('#new_blog_link').click(function() {
         clog("Link clicked, waiting 5 seconds and rendering feed view.");
         /* Need to re-init, unfortunately. */
-        setTimeout(get_wp_resources(get_current_group()), 10000);
+        setTimeout(messagebox("Hold on.", "We'll pull the feed in just a moment."), 2);
+        setTimeout(function() {
+            $('#c_messagebox').hide();
+            get_wp_resources(get_current_group());
+        }, 18000);
     });
 }
 
