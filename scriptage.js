@@ -58,7 +58,7 @@ function handle_resource_response(response) {
         $('#c_feeds').css('display', 'block');
         $('#c_feeds').empty();
         res.forEach(function(e) {
-            get_feed_for('http://' + e.resource.local_name + '.wordpress.identitylabs.org/', name);
+            get_feed_for('http://' + e.resource.local_name + '.wordpress.identitylabs.org/', e.resource.local_name);
         });
     } else {
         render_create();
