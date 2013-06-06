@@ -1,22 +1,5 @@
 var current_group; /* for now. */
 
-/* This neat thing stolen from http://stackoverflow.com/a/6271906/320475 */
-function parse_rss(url, callback) {
-  $.ajax({
-    url: document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(url),
-    dataType: 'json',
-    success: function(data) {
-        console.log(data);
-        if (data.responseData) {
-            callback(data.responseData.feed);
-        } else {
-            clog("Not rendering feed for " + url + " -- there's nothing there.");
-            messagebox("Feed was empty.", "So, like, you know.");
-        }
-    },
-  });
-}
-
 /* Meh. */
 function clog(message) {
     console.log("(*) WP Emissary says: " + message);    
