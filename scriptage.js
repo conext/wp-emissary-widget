@@ -10,7 +10,7 @@ function get_current_group() {
     return current_group; /* todo: cleanup */
 }
 
-function get_feed_for(uri, name) {
+function get_feed_for(uri) {
     clog("in get_feed_for(uri), uri = " + uri);
     /* 'seed' is a way of getting around Google's cache */
     uri = uri + "?feed=json";
@@ -22,7 +22,7 @@ function get_feed_for(uri, name) {
         success: function(data) {
             clog("Got JSON WP feed:");
             console.log(data);
-            render_feeds(data, name);
+            render_feeds(data);
         },
         error: function(data) {
             clog("ajax call failed:");
@@ -41,7 +41,7 @@ function handle_resource_response(response) {
         $('#c_feeds').css('display', 'block');
         $('#c_feeds').empty();
         res.forEach(function(e) {
-            get_feed_for('http://' + e.resource.local_name + '.wordpress.identitylabs.org/', e.resource.local_name);
+            get_feed_for('http://' + e.resource.local_name + '.wordpress.identitylabs.org/');
         });
     } else {
         render_create();
@@ -95,7 +95,7 @@ function messagebox(messsage, description) {
 }
 
 /* Render feeds in their div, hide other divs. */
-function render_feeds(feed, name) {
+function render_feeds(feed) {
     clog("in render_feeds():");
     console.log(feed);
     decommission_splash();
@@ -106,7 +106,7 @@ function render_feeds(feed, name) {
         .attr('id', $.md5(feed.bloginfo.site_url))
         .attr('class', 'feed')
         .append($('<a></a>')
-            .attr('href', 'https://wordpress.identitylabs.org/?conext_redirect=' + name)
+            .attr('href', feed.bloginfo.site_url)
             .attr('class', 'feed_site')
             .attr('target', '_blank')
             .text((feed.bloginfo.title ? feed.bloginfo.title : "(blog with no title)"))));
