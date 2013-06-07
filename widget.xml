@@ -78,11 +78,4 @@
     ]]>
     </Content>
 
-    <!-- View when maximized -->
-    <Content view="canvas">
-    <![CDATA[
-        Not yet.    
-
-    ]]>
-    </Content>
 </Module>
