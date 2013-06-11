@@ -11,10 +11,8 @@ function get_current_group() {
 }
 
 function get_feed_for(uri) {
-    clog("in get_feed_for(uri), uri = " + uri);
-    /* 'seed' is a way of getting around Google's cache */
-    uri = uri + "?feed=json";
-    clog("=> " + uri);
+    uri += "?feed=json";
+    clog("Pulling feed => " + uri);
     $.ajax({
         url: uri,
         dataType: 'json',
@@ -75,11 +73,6 @@ function get_wp_resources(group_id) {
     }
 }
 
-/*
- * render_* calls
- * 
- */
-
 function messagebox(messsage, description) {
     decommission_splash();
     $('#communique').children().hide();
@@ -114,9 +107,15 @@ function render_feeds(feed) {
         feed.posts.forEach(function(e) {
             clog("++");
             console.log(e);
+            var post_date = new Date(e.date);
             $('#' + $.md5(feed.bloginfo.site_url)).append(
                 $('<p></p>')
                 .attr('class', 'site_post')
+                .append(
+                    $('<p></p>')
+                    .attr('class', 'post_date')
+                    .attr('title', post_date.toISOString())
+                    .timeago())
                 .append(
                     $('<a></a>')
                     .attr('href', e.permalink)

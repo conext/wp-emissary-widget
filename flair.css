@@ -136,3 +136,14 @@ p#mbox_description {
     font-style: italic;
     font-weight: 300;
 }
+
+p.post_date {
+    color: #aaa;
+    font-size: 10px;
+    margin-bottom: 0;
+}
+
+/* It was either this or way too many .js lines */
+p.post_date:after {
+    content: ":";
+}
