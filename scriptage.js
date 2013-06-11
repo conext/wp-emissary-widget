@@ -5,7 +5,7 @@ function clog(message) {
     console.log("(*) WP Emissary says: " + message);    
 }
 
-/* Pull from dropdown, atm. */
+/* Silly. */
 function get_current_group() {
     return current_group; /* todo: cleanup */
 }
@@ -15,7 +15,6 @@ function get_feed_for(uri) {
     /* 'seed' is a way of getting around Google's cache */
     uri = uri + "?feed=json";
     clog("=> " + uri);
-    //parse_rss(uri, render_feeds);
     $.ajax({
         url: uri,
         dataType: 'json',
@@ -61,10 +60,6 @@ function get_user_groups() {
         /* jmp */
         get_wp_resources();
     });
-}
-
-function register_resource() {
-    clog("in register_resource().");
 }
 
 /* Fire a request for resources and pass the response to rendering function. */
