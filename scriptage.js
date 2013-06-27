@@ -207,6 +207,14 @@ function emissary_init() {
 
     top.postMessage("let's go!", top.location.origin);
 
+
+    /* Every 10 seconds, if a group is currently displayed, refresh it. */
+    setInterval(function() {
+        if (get_current_group()) {
+            get_wp_resources(get_current_group());
+        }
+    }, 10000);
+
     $('#create_form').submit(function(e) {
         e.preventDefault();
         var local_name = $('#site_name').val();
