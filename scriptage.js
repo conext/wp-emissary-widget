@@ -193,7 +193,10 @@ function emissary_init() {
     window.addEventListener("message", function(ev) {
         console.log(ev);
         if (!ev.data) { 
-            messagebox("Weird.", "I couldn't get your group.");
+            messagebox(
+                "No group selected.",
+                "Please select a group to work with this application."
+            );
         } else if (ev.data != current_group) {
             /* Clean up input field if something left over (happened). */
             $('#site_name').val('');
