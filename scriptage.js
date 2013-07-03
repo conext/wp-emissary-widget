@@ -125,7 +125,7 @@ function render_feeds(feed) {
                 .append(
                     $('<span></span>')
                     .attr('class', 'site_post_digest')
-                    .text(e.excerpt))
+                    .text(e.excerpt.substr(0, 130) + "..."))
             );
         });
     }
