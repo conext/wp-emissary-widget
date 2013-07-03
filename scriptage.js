@@ -5,17 +5,14 @@ function clog(message) {
     console.log("(*) WP Emissary says: " + message);    
 }
 
-/* Pull from dropdown, atm. */
+/* Silly. */
 function get_current_group() {
     return current_group; /* todo: cleanup */
 }
 
 function get_feed_for(uri) {
-    clog("in get_feed_for(uri), uri = " + uri);
-    /* 'seed' is a way of getting around Google's cache */
-    uri = uri + "?feed=json";
-    clog("=> " + uri);
-    //parse_rss(uri, render_feeds);
+    uri += "?feed=json";
+    clog("Pulling feed => " + uri);
     $.ajax({
         url: uri,
         dataType: 'json',
@@ -63,10 +60,6 @@ function get_user_groups() {
     });
 }
 
-function register_resource() {
-    clog("in register_resource().");
-}
-
 /* Fire a request for resources and pass the response to rendering function. */
 function get_wp_resources(group_id) {
     if (osapi.resources === undefined) {
@@ -79,11 +72,6 @@ function get_wp_resources(group_id) {
         }).execute(handle_resource_response);
     }
 }
-
-/*
- * render_* calls
- * 
- */
 
 function messagebox(messsage, description) {
     decommission_splash();
@@ -119,9 +107,15 @@ function render_feeds(feed) {
         feed.posts.forEach(function(e) {
             clog("++");
             console.log(e);
+            var post_date = new Date(e.date);
             $('#' + $.md5(feed.bloginfo.site_url)).append(
                 $('<p></p>')
                 .attr('class', 'site_post')
+                .append(
+                    $('<p></p>')
+                    .attr('class', 'post_date')
+                    .attr('title', post_date.toISOString())
+                    .timeago())
                 .append(
                     $('<a></a>')
                     .attr('href', e.permalink)
@@ -131,7 +125,7 @@ function render_feeds(feed) {
                 .append(
                     $('<span></span>')
                     .attr('class', 'site_post_digest')
-                    .text(e.excerpt))
+                    .text(e.excerpt.substr(0, 130) + "..."))
             );
         });
     }
@@ -199,7 +193,10 @@ function emissary_init() {
     window.addEventListener("message", function(ev) {
         console.log(ev);
         if (!ev.data) { 
-            messagebox("Weird.", "I couldn't get your group.");
+            messagebox(
+                "No group selected.",
+                "Please select a group to work with this application."
+            );
         } else if (ev.data != current_group) {
             /* Clean up input field if something left over (happened). */
             $('#site_name').val('');
@@ -212,6 +209,14 @@ function emissary_init() {
     });      
 
     top.postMessage("let's go!", top.location.origin);
+
+
+    /* Every 10 seconds, if a group is currently displayed, refresh it. */
+    setInterval(function() {
+        if (get_current_group()) {
+            get_wp_resources(get_current_group());
+        }
+    }, 20000);
 
     $('#create_form').submit(function(e) {
         e.preventDefault();

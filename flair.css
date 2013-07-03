@@ -33,7 +33,7 @@ span.bad {
 }
 
 .feed a.feed_site {
-    font-size: 14px;
+    font-size: 18px;
     text-decoration: underline;
     font-weight: bold;
     font-family: "Open Sans";
@@ -135,4 +135,15 @@ p#mbox_description {
     font-family: 'Open Sans', sanf-serif;
     font-style: italic;
     font-weight: 300;
+}
+
+p.post_date {
+    color: #aaa;
+    font-size: 10px;
+    margin-bottom: 0;
+}
+
+/* It was either this or way too many .js lines */
+p.post_date:after {
+    content: ":";
 }
