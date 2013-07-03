@@ -216,7 +216,7 @@ function emissary_init() {
         if (get_current_group()) {
             get_wp_resources(get_current_group());
         }
-    }, 120000);
+    }, 20000);
 
     $('#create_form').submit(function(e) {
         e.preventDefault();
