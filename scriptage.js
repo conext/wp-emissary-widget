@@ -1,5 +1,12 @@
 var current_group; /* for now. */
 
+/*** CONFIGURATION: URLS & DOM ***/
+var WP_DOMAIN = ".wordpress.identitylabs.org";
+/* Include scheme, omit trailing '/' */
+var WP_URL = "https://wordpress.identitylabs.org";
+/*** CONFIGURATION END ***/
+
+
 /* Meh. */
 function clog(message) {
     console.log("(*) WP Emissary says: " + message);    
@@ -38,7 +45,7 @@ function handle_resource_response(response) {
         $('#c_feeds').css('display', 'block');
         $('#c_feeds').empty();
         res.forEach(function(e) {
-            get_feed_for('http://' + e.resource.local_name + '.wordpress.identitylabs.org/');
+            get_feed_for('http://' + e.resource.local_name + WP_DOMAIN + '/');
         });
     } else {
         render_create();
@@ -136,7 +143,7 @@ function render_goto_wp(site_name) {
     clog("in render_goto_wp()");
     $('.renderable').css('display', 'none');
     $('#c_go_to_wp').css('display', 'block');
-    var uri = 'https://wordpress.identitylabs.org/?conext_redirect=' + site_name;
+    var uri = WP_URL + '/?conext_redirect=' + site_name;
     $('#new_blog_link').attr('href', uri).text('right over here');
     /* Make link disappear after it's clicked. */
     $('#new_blog_link').click(function() {
@@ -226,7 +233,7 @@ function emissary_init() {
             "groupId": get_current_group(), 
             "obj" : {
                 "local_name": local_name,
-                "uri": "https://" + local_name + ".wordpress.identitylabs.org"
+                "uri": "https://" + local_name + WP_DOMAIN 
             }
         }).execute(function(res) { 
             clog("response I got: ");
