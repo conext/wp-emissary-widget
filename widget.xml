@@ -1,11 +1,11 @@
 <Module>
     <ModulePrefs 
-        title="Wordpress Emissary Widget" 
+        title="Wordpress Widget"
         title_url="https://github.com/conext/wp-emissary-widget" 
         directory_title="Dir" 
         description="A widget that allows to interact with Conext's Wordpress." 
-        screenshot="http://i.imgur.com/fFAwyq0.png" 
-        thumbnail="http://i.imgur.com/fFAwyq0.png" 
+        screenshot="https://wordpress-widget.identitylabs.org/wordpress.png"
+        thumbnail="https://wordpress-widget.identitylabs.org/wordpress.png"
         category="tools" 
         category2="productivity" 
         author="Cloud Identity Limited - http://www.cloudidentity.co.uk" 
